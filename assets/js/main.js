@@ -23,7 +23,6 @@ var app = new Vue({
                   status: 'received'
               }
           ],
-          currentChat : false
       },
       {
           name: 'Fabio',
@@ -46,7 +45,6 @@ var app = new Vue({
                   status: 'sent'
               }
           ],
-          currentChat : false
       },
       {
           name: 'Samuele',
@@ -69,7 +67,6 @@ var app = new Vue({
                   status: 'received'
               }
           ],
-          currentChat : false
       },
       {
           name: 'Alessandro B.',
@@ -87,7 +84,6 @@ var app = new Vue({
                   status: 'received'
               }
           ],
-          currentChat : false
       },
       {
           name: 'Alessandro L.',
@@ -105,7 +101,6 @@ var app = new Vue({
                   status: 'received'
               }
           ],
-          currentChat : false
       },
       {
           name: 'Claudia',
@@ -128,7 +123,6 @@ var app = new Vue({
                   status: 'sent'
               }
           ],
-          currentChat : false
       },
       {
           name: 'Federico',
@@ -146,7 +140,6 @@ var app = new Vue({
                   status: 'received'
               }
           ],
-          currentChat : false
       },
       {
           name: 'Davide',
@@ -167,24 +160,28 @@ var app = new Vue({
                   date: '10/01/2020 15:51:00',
                   message: 'OK!!',
                   status: 'received'
-              }
-          ],
-          currentChat : false
-      }
-    ],
+                }
+              ],
+            }
+      ],
+      current : [],
   },
   methods : {
+    viewChat: function(i){
+      this.current = this.contacts[i];
+    },
+    // DA SISTEMARE
+    lastMessage : function(i){
+      console.log(this.contacts[i].messages[1].message)
+    },
     // DA SISTEMARE
     shortDate : function(){
       this.contacts.messages.date.substr(11);
     },
-    
-    viewChat : function(i){
-      this.contacts[i].currentChat = true
-    },
     // PER MANDARE MESSAGGI
     sendMessage : function(){
       const message = document.getElementById("send").value;
+      console.log(message);
       const today = new Date();
       const date = today.getFullYear()+'/'+(today.getMonth()+1)+'/'+today.getDate() + " " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
       newMessage = {
@@ -192,8 +189,8 @@ var app = new Vue({
         message,
         status: 'sent'
       };
-      this.contacts.messages.push(newMessage);
-      setInterval(this.messageReceived, 3000);
+      this.current.messages.push(newMessage);
+      setTimeout(this.messageReceived, 3000);
     },
 
     // LA RISPOSTA AUTOMATICA
@@ -205,7 +202,11 @@ var app = new Vue({
         message: "ok",
         status: 'received'
       };
-      this.contacts.messages.push(newMessage);
+      this.current.messages.push(newMessage);
     }
+  },
+
+  created(){
+    this.current = this.contacts[0];
   }
 })
