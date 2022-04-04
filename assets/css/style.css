@@ -1,0 +1,45 @@
+:root{
+  --hover-chat: #e8ebee;
+  --notification-color: #99dafd;
+  --bg-search: #f9fafd;
+}
+
+main{
+  font-family: sans-serif;
+  width: 100vw;
+  height: 100vh;
+  background-image: linear-gradient(#359589 0%,#359589 15vh,#dadbd5 15vh, #d3dbdd 100vh);
+}
+
+img{max-width: 15%; height: auto; border-radius: 50%; cursor: pointer;}
+i{cursor: pointer;}
+.w-100{width: 100%;}
+
+.text-gray{color: #b0b1b3;}
+.text-lightgray{color: #bfc4d0;}
+.bg-lightgray{background-color: #e9eaed;}
+.bg-lightblue{background-color: #99dafd;}
+
+.container{background-color: #fff; height: 90%; width: 80%;}
+.col-4,
+.col-8{height: 100%;}
+.top{height: 8%;}
+
+#notification{height: 8%;}
+#notification i{
+  color: var(--notification-color);
+  background-color: #f2fbff;
+  clip-path: circle();
+  font-size: 1.2rem;
+}
+
+#notification a{color: #6e96af; text-decoration: underline;}
+#search{background-color: var(--bg-search); height: 6%;}
+#search span{flex-basis: 18%; background-color: #fff; border-right: 1px solid var(--bg-search);}
+#search input{border: none; flex-basis: 82%;}
+
+#list-contacts{overflow-y: scroll; height: 78%;}
+#list-contacts img{max-width: 10%;}
+#contact{border-bottom: 1px solid #e8ebee;}
+
+#contact:hover{background-color: #e8ebee; cursor: pointer;}
