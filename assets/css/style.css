@@ -44,14 +44,40 @@ i{cursor: pointer;}
 
 #list-contacts{overflow-y: scroll; height: 78%;}
 #list-contacts img{max-width: 10%; height: auto; border-radius: 50%; cursor: pointer;}
-#contact{border-bottom: 1px solid #e8ebee;}
 
+#contact{border-bottom: 1px solid #e8ebee;}
 #contact:hover{background-color: #e8ebee; cursor: pointer;}
 
 #chat{height: 84%; background-image: url(../img/mine.jpg); overflow-y: scroll;}
+#chat ul{margin-top: 2em;}
+
 #input-text{height: 8%; background-color: var(--bg-input-text); border-left: 1px solid #b0b1b3;}
 
 #emoji-icon,
 #microphone-icon{flex-basis: 9%;}
 #input-message{flex-basis: 82%;}
 #input-message input{width: 100%; border: none;}
+
+.sent{
+  background-color: #d8f8bf;
+  width: 35%;
+  flex-basis:33.333%;
+  margin-left: 58.333%;
+  margin-right:8.333%;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  padding: 1em;
+  border-radius: 15px;
+}
+
+.received{
+  background-color: #fff;
+  width: 35%;
+  flex-basis:33.333%;
+  margin-right: 58.333%;
+  margin-left:8.333%;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  padding: 1em;
+  border-radius: 15px;
+}

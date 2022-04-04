@@ -1,9 +1,3 @@
-// Oggi iniziamo con la milestone 1:
-
-// Milestone 1tramite la direttiva v-for, visualizzare nome e immagine di ogni contatto
-// Replica della grafica con la possibilità di avere messaggi scritti dall’utente (verdi) e dall’interlocutore (bianco) assegnando due classi CSS diverse
-// Visualizzazione dinamica della lista contatti: tramite la direttiva v-for, visualizzare nome e immagine di ogni contatto
-
 var app = new Vue({
   el : "#root",
   data : {
@@ -29,6 +23,7 @@ var app = new Vue({
                   status: 'received'
               }
           ],
+          currentChat : false
       },
       {
           name: 'Fabio',
@@ -51,6 +46,7 @@ var app = new Vue({
                   status: 'sent'
               }
           ],
+          currentChat : false
       },
       {
           name: 'Samuele',
@@ -73,6 +69,7 @@ var app = new Vue({
                   status: 'received'
               }
           ],
+          currentChat : false
       },
       {
           name: 'Alessandro B.',
@@ -90,6 +87,7 @@ var app = new Vue({
                   status: 'received'
               }
           ],
+          currentChat : false
       },
       {
           name: 'Alessandro L.',
@@ -107,6 +105,7 @@ var app = new Vue({
                   status: 'received'
               }
           ],
+          currentChat : false
       },
       {
           name: 'Claudia',
@@ -129,6 +128,7 @@ var app = new Vue({
                   status: 'sent'
               }
           ],
+          currentChat : false
       },
       {
           name: 'Federico',
@@ -146,6 +146,7 @@ var app = new Vue({
                   status: 'received'
               }
           ],
+          currentChat : false
       },
       {
           name: 'Davide',
@@ -168,10 +169,43 @@ var app = new Vue({
                   status: 'received'
               }
           ],
+          currentChat : false
       }
-  ]
+    ],
   },
   methods : {
+    // DA SISTEMARE
+    shortDate : function(){
+      this.contacts.messages.date.substr(11);
+    },
+    
+    viewChat : function(i){
+      this.contacts[i].currentChat = true
+    },
+    // PER MANDARE MESSAGGI
+    sendMessage : function(){
+      const message = document.getElementById("send").value;
+      const today = new Date();
+      const date = today.getFullYear()+'/'+(today.getMonth()+1)+'/'+today.getDate() + " " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      newMessage = {
+        date,
+        message,
+        status: 'sent'
+      };
+      this.contacts.messages.push(newMessage);
+      setInterval(this.messageReceived, 3000);
+    },
 
+    // LA RISPOSTA AUTOMATICA
+    messageReceived : function(){
+      const today = new Date();
+      const date = today.getFullYear()+'/'+(today.getMonth()+1)+'/'+today.getDate() + " " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      newMessage = {
+        date,
+        message: "ok",
+        status: 'received'
+      };
+      this.contacts.messages.push(newMessage);
+    }
   }
 })
