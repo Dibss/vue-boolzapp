@@ -164,7 +164,7 @@
                 ],
                 }
         ],
-        current : [],
+        current : 0,
         messageMenu : false
         // NON FUNZIONA MESSAGEMENU
     },
@@ -197,7 +197,7 @@
             this.current.messages.push(newMessage);
         },
         // DA SISTEMARE
-        deleteMesssage : function(i){
+        deleteMessage : function(i){
             this.contacts[i].messages[i].splice(i, 1);
         },
         // DA SISTEMARE
@@ -250,6 +250,5 @@
     created(){
         // CHAT APERTA DI DEFAULT
         this.current = this.contacts[0];
-        console.log(this.shortDate())
     }
     })
