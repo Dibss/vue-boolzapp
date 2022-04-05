@@ -43,19 +43,19 @@
           </div>
           <!-- search -->
           <div id="search" class="d-flex jc-center ai-center px-1">
-            <div class="my-1 d-flex w-100">
-              <span class="text-center"><i class="fa-solid fa-magnifying-glass text-gray py-1"></i></span>
-              <input type="text" placeholder=" Cerca o inizia una nuova chat">
+            <div class="my-1 d-flex w-100 ai-center">
+              <span class="text-center"><i class="fa-solid fa-magnifying-glass text-gray py-1" @click="filter()"></i></span>
+              <input id="search" type="text" placeholder=" Cerca o inizia una nuova chat" @keyup.enter="filter()">
             </div>
           </div>
           <!-- lista chat -->
           <div id="list-contacts">
-            <ul>
+            <ul id="contact-list">
               <li v-for="(contact, i) in contacts" class="d-flex jc-between" id="contact" @click="viewChat(i)">
                 <div class="d-flex ai-center">
                   <img class="mx-2 my-2" :src="'./assets/img/avatar' + contact.avatar + '.jpg'" alt="profile image">
                   <div>
-                    <div>{{contact.name}}</div>
+                    <div class="contact-name">{{contact.name}}</div>
                     <span class="text-lightgray fs-3">Ultimo messaggio oggi alle 12:00</span>
                   </div>
                 </div>
@@ -84,10 +84,22 @@
           </div>
           <div id="chat">
             <ul class="d-flex flex-wrap">
-              <li v-for="message in current.messages" :class="(message.status == 'sent') ? 'sent' : 'received'">
+              <li v-for="(message, i) in current.messages" :class="(message.status == 'sent') ? 'sent' : 'received'" class="message">
+                <!-- DA RICORDARE class message temporanea -->
                   <div class="d-flex flex-wrap">
-                    <div class="col-12">
-                      {{message.message}}
+                    <div class="col-11">
+                        {{message.message}}
+                    </div>
+                    <div class="col-1">
+                      <i class="fa-solid fa-chevron-down delete show"></i>
+                      <!-- CLASSI DELETE E SHOW DA TOGLIERE -->
+                      <!-- <nav v-show="messageMenu">
+                        <i class="fa-solid fa-angle-up delete hide d-none"></i>
+                        <ul>
+                          <li><a href="#">Message Info</a></li>
+                          <li><a href="#">Delete Message</a></li>
+                        </ul>
+                      </nav> -->
                     </div>
                     <span class="fs-3 text-darkgray">
                       {{message.date}}
