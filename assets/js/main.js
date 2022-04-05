@@ -198,7 +198,8 @@
         },
         // DA SISTEMARE
         deleteMessage : function(i){
-            this.contacts[i].messages[i].splice(i, 1);
+            this.current.messages = this.current.messages[i]
+            this.current.messages.message.splice(i, 1);
         },
         // DA SISTEMARE
         lastMessage : function(i){
@@ -210,7 +211,8 @@
         },
         // DA SISTEMARE
         shortDate : function(i){
-            this.contacts[i].messages[i].date.substr(11);
+            this.current.messages = this.current.messages[i]
+            this.current.messages.date.substr(11);
         },
         // DA SISTEMARE PER CERCARE I CONTATTI
         filter : function (){
@@ -250,5 +252,6 @@
     created(){
         // CHAT APERTA DI DEFAULT
         this.current = this.contacts[0];
+        console.log(shortDate())
     }
     })
