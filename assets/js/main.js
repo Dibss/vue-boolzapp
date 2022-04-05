@@ -164,7 +164,7 @@
                 ],
                 }
         ],
-        current : 0,
+        current : null,
         messageMenu : false
         // NON FUNZIONA MESSAGEMENU
     },
