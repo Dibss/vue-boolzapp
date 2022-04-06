@@ -46,6 +46,9 @@ i{cursor: pointer;}
 #list-contacts{overflow-y: scroll; height: 78%;}
 #list-contacts img{max-width: 10%; height: auto; border-radius: 50%; cursor: pointer;}
 
+.contact-list-item-sx{flex-basis: 80%;}
+.contact-list-item-dx{flex-basis: 20%;}
+
 #contact{border-bottom: 1px solid #e8ebee;}
 #contact:hover{background-color: #e8ebee; cursor: pointer;}
 

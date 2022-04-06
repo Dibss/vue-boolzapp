@@ -231,17 +231,9 @@ var app = new Vue({
             this.hideMessageMenu();
         },
         // DA SISTEMARE
-        lastMessage : function(){
-            this.currentChat.messages[messages.length -1]
-        },
-        // DA SISTEMARE
-        lastTimeOnline : function(){
-            this.contacts[0].messages[1].date
-        },
-        // DA SISTEMARE
         shortDate : function(i){
             this.messageMenuIndex = i;
-            this.currentChat.messages.date[this.messageMenuIndex].substr(11);
+            this.currentChat.messages[this.messageMenuIndex].date.substr(11);
         },
     },
 

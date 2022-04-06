@@ -52,15 +52,15 @@
           <div id="list-contacts">
             <ul id="contact-list">
               <li v-for="(contact, i) in contacts" class="d-flex jc-between" id="contact" @click="viewChat(i)" v-if="contact.visible == true">
-                <div class="d-flex ai-center">
+                <div class="d-flex ai-center contact-list-item-sx">
                   <img class="mx-2 my-2" :src="'./assets/img/avatar' + contact.avatar + '.jpg'" alt="profile image">
                   <div>
                     <div class="contact-name">{{contact.name}}</div>
-                    <span class="text-lightgray fs-3">Ultimo messaggio oggi alle 12:00</span>
+                    <span class="text-lightgray fs-3">{{contact.messages[(contact.messages.length -1)].message}}</span>
                   </div>
                 </div>
-                <div class="mt-2">
-                  <span class="text-lightgray fs-3 mr-2">12:00</span>
+                <div class="mt-2 contact-list-item-dx">
+                  <span class="text-lightgray fs-3 mr-2">{{contact.messages[(contact.messages.length -1)].date}}</span>
                 </div>
               </li>
             </ul>
@@ -73,7 +73,7 @@
               <img id="current-chat-img" class="va-middle ml-1 mr-1" :src="'./assets/img/avatar' + currentChat.avatar + '.jpg'" alt="user image">
               <div>
                 <div>{{currentChat.name}}</div>
-                <span class="text-darkgray fs-4">Ultimo accesso oggi alle 12:00</span>
+                <span class="text-darkgray fs-4">Online</span>
               </div>
             </div>
             <div class="d-flex">
