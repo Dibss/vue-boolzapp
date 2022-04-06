@@ -81,6 +81,3 @@ i{cursor: pointer;}
   padding: 1em;
   border-radius: 15px;
 }
-
-/* PERCHE' NON FUNGEEEEEEE */
-.message:hover.delete{display: unset;}

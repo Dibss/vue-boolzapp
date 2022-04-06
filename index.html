@@ -45,13 +45,13 @@
           <div id="search" class="d-flex jc-center ai-center px-1">
             <div class="my-1 d-flex w-100 ai-center">
               <span class="text-center"><i class="fa-solid fa-magnifying-glass text-gray py-1" @click="filter()"></i></span>
-              <input id="search" type="text" placeholder=" Cerca o inizia una nuova chat" @keyup.enter="filter()">
+              <input id="search" type="text" placeholder=" Cerca o inizia una nuova chat" @keyup="filter()" v-model="textFilter">
             </div>
           </div>
           <!-- lista chat -->
           <div id="list-contacts">
             <ul id="contact-list">
-              <li v-for="(contact, i) in contacts" class="d-flex jc-between" id="contact" @click="viewChat(i)">
+              <li v-for="(contact, i) in contacts" class="d-flex jc-between" id="contact" @click="viewChat(i)" v-if="contact.visible == true">
                 <div class="d-flex ai-center">
                   <img class="mx-2 my-2" :src="'./assets/img/avatar' + contact.avatar + '.jpg'" alt="profile image">
                   <div>
@@ -84,22 +84,24 @@
           </div>
           <div id="chat">
             <ul class="d-flex flex-wrap">
-              <li v-for="(message, i) in current.messages" :class="(message.status == 'sent') ? 'sent' : 'received'" class="message">
-                <!-- DA RICORDARE class message temporanea -->
+              <li v-for="(message, i) in current.messages" :class="(message.status == 'sent') ? 'sent' : 'received'">
                   <div class="d-flex flex-wrap">
                     <div class="col-11">
                         {{message.message}}
                     </div>
                     <div class="col-1">
-                      <i class="fa-solid fa-chevron-down delete show"></i>
-                      <!-- CLASSI DELETE E SHOW DA TOGLIERE -->
-                      <!-- <nav v-show="messageMenu">
-                        <i class="fa-solid fa-angle-up delete hide d-none"></i>
+                      <i @click="showMessageMenu()" class="fa-solid fa-chevron-down show"></i>
+                      <!-- CLASSE SHOW TEMPORANEA -->
+                      <!-- ------------------------------------------------------------------------ -->
+                      <nav v-show="messageMenu">
+                        <i class="fa-solid fa-angle-up hide d-none"></i>
+                        <!-- CLASSE HIDE TEMPORANEA -->
                         <ul>
                           <li><a href="#">Message Info</a></li>
                           <li><a href="#">Delete Message</a></li>
                         </ul>
-                      </nav> -->
+                      </nav>
+                      <!-- ------------------------------------------------------------------------ -->
                     </div>
                     <span class="fs-3 text-darkgray col-12 text-right">
                       {{message.date}}
@@ -113,7 +115,7 @@
               <i class="fa-solid fa-face-smile text-darkgray fs-6"></i>
             </div>
             <div id="input-message">
-              <input id="send" type="text" placeholder="Scrivi un messaggio" class="p-2" @keyup.enter="sendMessage()">
+              <input v-model="message" type="text" placeholder="Scrivi un messaggio" class="p-2" @keyup.enter="sendMessage()">
             </div>
             <div class="text-center" id="microphone-icon">
               <i class="fa-solid fa-microphone text-darkgray fs-6"></i>

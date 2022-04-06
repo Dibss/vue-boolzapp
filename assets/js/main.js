@@ -164,8 +164,10 @@
                 ],
                 }
         ],
-        current : null,
-        messageMenu : false
+        current : 0,
+        messageMenu : false,
+        textFilter : "",
+        message : "",
         // NON FUNZIONA MESSAGEMENU
     },
     methods : {
@@ -173,7 +175,7 @@
             this.current = this.contacts[i];
         },
         sendMessage : function(){
-            const message = document.getElementById("send").value;
+            const message = this.message;
             console.log(message);
             const today = new Date();
             const date = today.getFullYear()+'/'+(today.getMonth()+1)+'/'+today.getDate() + " " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
@@ -184,7 +186,7 @@
             };
             this.current.messages.push(newMessage);
             setTimeout(this.messageReceived, 1000);
-            document.getElementById("send").value = "";
+            this.message = "";
         },
         messageReceived : function(){
             const today = new Date();
@@ -195,6 +197,30 @@
                 status: 'received'
             };
             this.current.messages.push(newMessage);
+        },
+        filter : function (){
+            let text = this.textFilter.toUpperCase();
+            this.contacts.forEach(
+                (elm) => {
+                let upperName = elm.name.toUpperCase();
+                if(upperName.includes(text)){
+                    elm.visible = true;
+                } else {
+                    elm.visible = false;
+                }
+            });
+        },
+        showMessageMenu: function() {
+            this.messageMenu = true;
+            console.log(this.messageMenu)
+            document.querySelector("i.show").style.display = "none";
+            document.querySelector(".hide").classList.remove("d-none")
+        },
+        hideMessageMenu: function() {
+            this.messageMenu= false;
+            console.log(this.messageMenu)
+            document.querySelector(".show").style.display = "";
+            document.querySelector(".hide").style.display = "";
         },
         // DA SISTEMARE
         deleteMessage : function(i){
@@ -210,48 +236,15 @@
             this.contacts[0].messages[1].date
         },
         // DA SISTEMARE
-        shortDate : function(i){
-            this.current.messages = this.current.messages[i]
-            this.current.messages.date.substr(11);
+        shortDate : function(){
+            let lastMessage = messages.length -1;
+            console.log(lastMessage);
+            this.contacts[1].messages[lastMessage].date.substr(11);
         },
-        // DA SISTEMARE PER CERCARE I CONTATTI
-        filter : function (){
-            const search = document.getElementById("search");
-            const inputUpper = search.value.toUpperCase();
-            console.log(inputUpper);
-            const ul = document.getElementById('contact-list');
-            const li = ul.getElementsByTagName('li');
-            for(let i = 0; i < li.length; i++){
-                a = li[i].getElementsByClassName(".contact-name")[0];
-                console.log(a);
-                if (a.innerHTML.toUpperCase().indexOf(inputUpper) > -1) {
-                    li[i].style.display = "";
-                } else {
-                    li[i].style.display = "none";
-                }
-            }
-        },
-
-        /*showMessageMenu: function(i) {
-            this.messageMenu = true;
-            console.log(this.messageMenu)
-            let show = document.getElementsByClassName("show");
-            show.classList.add("d-none");
-            hide.classList.remove("d-none");
-        },
-        hideMessageMenu: function(i) {
-            this.messageMenu= false;
-            console.log(this.messageMenu)
-            let hide = document.getElementsByClassName("hide");
-            hide.classList.add("d-none");
-            let show = document.getElementsByClassName("show");
-            show.classList.remove("d-none");
-        }*/
     },
     
     created(){
         // CHAT APERTA DI DEFAULT
         this.current = this.contacts[0];
-        console.log(shortDate())
     }
     })
