@@ -20,6 +20,7 @@ i{cursor: pointer;}
 .text-darkgray{color: #69686d;}
 .bg-lightgray{background-color: #e9eaed;}
 .bg-lightblue{background-color: #99dafd;}
+.p-relative{position: relative;}
 
 .container{background-color: #fff; height: 90%; width: 80%;}
 .col-4,
@@ -48,8 +49,12 @@ i{cursor: pointer;}
 #contact{border-bottom: 1px solid #e8ebee;}
 #contact:hover{background-color: #e8ebee; cursor: pointer;}
 
-#chat{height: 84%; background-image: url(../img/mine.jpg); overflow-y: scroll;}
-#chat ul{margin-top: 2em;}
+#chat{
+  height: 84%;
+  background-image: url(../img/mine.jpg);
+  overflow-y: scroll;
+  padding-top: 2em;
+}
 
 #input-text{height: 8%; background-color: var(--bg-input-text); border-left: 1px solid #b0b1b3;}
 
@@ -81,3 +86,25 @@ i{cursor: pointer;}
   padding: 1em;
   border-radius: 15px;
 }
+
+.message:hover .show{display: unset;}
+
+.nav-sent{background-color: #fff;}
+.nav-received{background-color: #d8f8bf;}
+
+nav{
+  display: inline-block;
+  position: absolute;
+  z-index: 1;
+  text-align: right;
+  right: 1.1em;
+  border-radius: 15px;
+}
+
+nav ul{padding: 1em;}
+nav li{padding: 0.5em;}
+
+a{color: #000;}
+
+nav li a:hover{color: #fff;}
+nav li:hover{background-color: #363541ef;}

@@ -214,13 +214,13 @@
             this.messageMenu = true;
             console.log(this.messageMenu)
             document.querySelector("i.show").style.display = "none";
-            document.querySelector(".hide").classList.remove("d-none")
+            document.querySelector("i.hide").classList.remove("d-none")
         },
         hideMessageMenu: function() {
             this.messageMenu= false;
             console.log(this.messageMenu)
-            document.querySelector(".show").style.display = "";
-            document.querySelector(".hide").style.display = "";
+            document.querySelector("i.show").style.display = "";
+            document.querySelector("i.hide").classList.add("d-none")
         },
         // DA SISTEMARE
         deleteMessage : function(i){

@@ -84,21 +84,18 @@
           </div>
           <div id="chat">
             <ul class="d-flex flex-wrap">
-              <li v-for="(message, i) in current.messages" :class="(message.status == 'sent') ? 'sent' : 'received'">
+              <li v-for="(message, i) in current.messages" :class="(message.status == 'sent') ? 'sent' : 'received'" class="message p-relative">
                   <div class="d-flex flex-wrap">
                     <div class="col-11">
                         {{message.message}}
                     </div>
                     <div class="col-1">
-                      <i @click="showMessageMenu()" class="fa-solid fa-chevron-down show"></i>
-                      <!-- CLASSE SHOW TEMPORANEA -->
+                      <i @click="showMessageMenu(i)" class="fa-solid fa-chevron-down show d-none"></i>
                       <!-- ------------------------------------------------------------------------ -->
-                      <nav v-show="messageMenu">
-                        <i class="fa-solid fa-angle-up hide d-none"></i>
-                        <!-- CLASSE HIDE TEMPORANEA -->
+                      <nav v-show="messageMenu" :class="(message.status == 'sent') ? 'nav-sent' : 'nav-received'">
+                        <i @click="hideMessageMenu(i)" class="fa-solid fa-angle-up hide d-none"></i>
                         <ul>
-                          <li><a href="#">Message Info</a></li>
-                          <li><a href="#">Delete Message</a></li>
+                          <li @click="deleteMessage()"><a href="#">Delete Message</a></li>
                         </ul>
                       </nav>
                       <!-- ------------------------------------------------------------------------ -->
