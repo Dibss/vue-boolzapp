@@ -51,7 +51,7 @@
           <!-- lista chat -->
           <div id="list-contacts">
             <ul id="contact-list">
-              <li v-for="(contact, i) in contacts" class="d-flex jc-between" id="contact" @click="viewChat(i)" v-if="contact.visible == true">
+              <li v-for="(contact, i) in contacts" class="d-flex jc-between" id="contact" @click="viewChat(i)" v-show="contact.visible == true">
                 <div class="d-flex ai-center contact-list-item-sx">
                   <img class="mx-2 my-2" :src="'./assets/img/avatar' + contact.avatar + '.jpg'" alt="profile image">
                   <div>
